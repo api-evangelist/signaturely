@@ -1,0 +1,348 @@
+openapi: 3.0.3
+info:
+  title: Signaturely API
+  description: >-
+    REST API for Signaturely, simple electronic signature software. Send signature
+    requests from templates, bulk-send from CSV data, manage documents, templates,
+    folders, and team members, and subscribe to document webhooks. Access requires
+    a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses
+    an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from
+    the account API settings. Endpoint paths and methods below were confirmed from
+    Signaturely's public developer documentation.
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Signature Requests
+  description: Create signature requests from templates and bulk-send from CSV data.
+- name: Documents
+  description: List, download, share, remind on, and manage documents.
+- name: Templates
+  description: Work with reusable templates.
+- name: Folders
+  description: Organize documents and folders.
+- name: Team
+  description: Manage team members and roles.
+- name: Webhooks
+  description: Subscribe to document lifecycle events.
+- name: User
+  description: Account information for the authenticated API key.
+paths:
+  /document_sign/api/request_by_template:
+    post:
+      tags:
+      - Signature Requests
+      summary: Create a signature request from a template
+      description: Send a signature request by populating a saved template with signers and field values.
+      responses:
+        '200':
+          description: Signature request created.
+  /document_sign/api/bulk_send:
+    post:
+      tags:
+      - Signature Requests
+      summary: Bulk-send signature requests
+      description: Create many signature requests based on a single-signer template and CSV data.
+      responses:
+        '200':
+          description: Bulk send accepted.
+  /documents:
+    get:
+      tags:
+      - Documents
+      summary: List documents
+      responses:
+        '200':
+          description: A list of documents.
+    delete:
+      tags:
+      - Documents
+      summary: Delete a document
+      responses:
+        '200':
+          description: Document deleted.
+  /documents/{documentId}/signers:
+    get:
+      tags:
+      - Documents
+      summary: Get a document's signers
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A list of signers for the document.
+  /documents/{id}/activities:
+    get:
+      tags:
+      - Documents
+      summary: Get a document's activity log
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The document activity log.
+  /documents/{documentId}/revert:
+    patch:
+      tags:
+      - Documents
+      summary: Revert a document
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Document reverted.
+  /document_sign/documents/{documentId}/signed_download_url/api:
+    get:
+      tags:
+      - Documents
+      summary: Get a signed-document download URL
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A download URL for the signed document.
+  /document_sign/documents/{id}/share_url:
+    get:
+      tags:
+      - Documents
+      summary: Get a shareable signing link
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A shareable signing URL.
+  /document_sign/documents/{id}/share:
+    post:
+      tags:
+      - Documents
+      summary: Share a document
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Document shared.
+  /document_sign/documents/{id}/send_reminders:
+    post:
+      tags:
+      - Documents
+      summary: Send signing reminders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Reminders sent.
+  /api-integrations/recent_document:
+    get:
+      tags:
+      - Documents
+      summary: Get the most recent document
+      parameters:
+      - name: recentDocumentType
+        in: query
+        required: false
+        schema:
+          type: string
+          example: sent
+      responses:
+        '200':
+          description: The most recent document of the given type.
+  /documents/api/templates:
+    get:
+      tags:
+      - Templates
+      summary: List templates
+      description: Get the list of templates available to your account via API.
+      responses:
+        '200':
+          description: A list of templates.
+    delete:
+      tags:
+      - Templates
+      summary: Delete a template
+      responses:
+        '200':
+          description: Template deleted.
+  /document_sign/documents/{templateId}/signed_download_url/api:
+    get:
+      tags:
+      - Templates
+      summary: Download a template file
+      parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A download URL for the template file.
+  /api-integrations/folders:
+    get:
+      tags:
+      - Folders
+      summary: List folders
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A paginated list of folders.
+    post:
+      tags:
+      - Folders
+      summary: Create a folder
+      description: Create a folder for documents via API call.
+      responses:
+        '200':
+          description: Folder created.
+  /api-integrations/folders/{id}:
+    get:
+      tags:
+      - Folders
+      summary: Get a folder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Folder information.
+    patch:
+      tags:
+      - Folders
+      summary: Rename a folder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Folder renamed.
+  /api-integrations/folders/move:
+    patch:
+      tags:
+      - Folders
+      summary: Move documents or folders into a folder
+      responses:
+        '200':
+          description: Entities moved.
+  /teams/members:
+    get:
+      tags:
+      - Team
+      summary: List team members
+      description: Get the team members of your Signaturely account, with their respective account types.
+      responses:
+        '200':
+          description: A list of team members.
+  /teams/members/role:
+    patch:
+      tags:
+      - Team
+      summary: Change a team member's role
+      responses:
+        '200':
+          description: Role changed.
+  /add-teammates/with-role:
+    post:
+      tags:
+      - Team
+      summary: Add a team member with a role
+      responses:
+        '200':
+          description: Team member added.
+  /remove-teammates/email:
+    delete:
+      tags:
+      - Team
+      summary: Remove a team member by email
+      responses:
+        '200':
+          description: Team member removed.
+  /hooks/subscribe:
+    post:
+      tags:
+      - Webhooks
+      summary: Subscribe a webhook URL
+      description: >-
+        Register an HTTP endpoint to receive document event notifications.
+        Documented events include document_sent and document_completed.
+      responses:
+        '200':
+          description: Webhook subscribed.
+  /hooks/unsubscribe:
+    post:
+      tags:
+      - Webhooks
+      summary: Unsubscribe a webhook URL
+      responses:
+        '200':
+          description: Webhook unsubscribed.
+  /user/by-api:
+    get:
+      tags:
+      - User
+      summary: Get user
+      description: Retrieve information about the user account tied to your API key.
+      responses:
+        '200':
+          description: User account information.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

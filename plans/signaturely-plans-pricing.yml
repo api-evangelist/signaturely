@@ -1,0 +1,156 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Signaturely
+providerId: signaturely
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Electronic Signature
+- eSignature
+- E-Signature API
+- Signature Requests
+- Plans
+description: >-
+  Signaturely sells API access as a set of dedicated API plans that are separate
+  from its regular e-signature subscription plans. There are three monthly API
+  tiers - Gold, Platinum, and Titanium - that differ primarily by the number of
+  API signature requests allowed per month, the number of included templates, and
+  which advanced capabilities (OAuth, embedded signing, embedded requesting,
+  branding, white label) are unlocked. Developers can create API keys and test the
+  API for free, and are not billed until they send a real signature request.
+  Annual billing saves roughly 20% over monthly.
+notes: >-
+  Prices captured from the Signaturely API pricing page as of the review date;
+  verify current rates during reconciliation. Webhook access and explicit per-second
+  rate limits are not itemized on the pricing page - the primary metered unit is
+  API signature requests per month.
+sources:
+- https://signaturely.com/api
+- https://signaturely.com/pricing-api/
+- https://help.signaturely.com/category/53-api
+plans:
+- id: signaturely-api-free-test
+  name: Free Testing
+  type: free
+  description: >-
+    Create unlimited API keys and test the Signaturely API for free. No charge
+    until you send a real signature request, at which point an API plan is
+    required.
+  entries:
+  - label: API Signature Requests
+    name: free_test_requests
+    type: usage
+    metric: requests
+    limit: 0
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (testing only; sending a real signature request requires a paid API plan)
+    userMultiplied: false
+  elements:
+  - name: Unlimited API Keys
+  - name: Free Sandbox Testing
+- id: signaturely-api-gold
+  name: Gold
+  type: paid
+  description: >-
+    Entry API plan for basic automation. 50 API signature requests per month and
+    5 templates.
+  entries:
+  - label: API Signature Requests
+    name: gold_requests
+    type: usage
+    metric: requests
+    limit: 50
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $49/month (or $40/month billed annually)
+    userMultiplied: false
+  - label: Templates
+    name: gold_templates
+    type: quota
+    metric: templates
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: REST API Access
+  - name: Webhooks
+- id: signaturely-api-platinum
+  name: Platinum
+  type: paid
+  description: >-
+    Mid API plan adding OAuth, embedded signing, embedded requesting, and
+    personalized branding. 150 API signature requests per month and 25 templates.
+  entries:
+  - label: API Signature Requests
+    name: platinum_requests
+    type: usage
+    metric: requests
+    limit: 150
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $99/month (or $80/month billed annually)
+    userMultiplied: false
+  - label: Templates
+    name: platinum_templates
+    type: quota
+    metric: templates
+    limit: 25
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  elements:
+  - name: REST API Access
+  - name: Webhooks
+  - name: OAuth
+  - name: Embedded Signing
+  - name: Embedded Requesting
+  - name: Personalized Branding
+- id: signaturely-api-titanium
+  name: Titanium
+  type: paid
+  description: >-
+    Top API plan for enterprises with full white label and unlimited templates.
+    500 API signature requests per month.
+  entries:
+  - label: API Signature Requests
+    name: titanium_requests
+    type: usage
+    metric: requests
+    limit: 500
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $199/month (or $160/month billed annually)
+    userMultiplied: false
+  - label: Templates
+    name: titanium_templates
+    type: quota
+    metric: templates
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included (unlimited)
+    userMultiplied: false
+  elements:
+  - name: REST API Access
+  - name: Webhooks
+  - name: OAuth
+  - name: Embedded Signing
+  - name: Embedded Requesting
+  - name: Personalized Branding
+  - name: Full White Label
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

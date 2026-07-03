@@ -1,0 +1,171 @@
+aid: signaturely
+url: https://raw.githubusercontent.com/api-evangelist/signaturely/refs/heads/main/apis.yml
+name: Signaturely
+kind: company
+description: >-
+  Signaturely is simple electronic signature software for sending, signing, and
+  managing legally binding documents online. Beyond the web app, Signaturely offers
+  a documented public REST API (base https://api.signaturely.com/api/v1) gated
+  behind separately billed API plans (Gold, Platinum, Titanium). The API is
+  authenticated with an API key ("Authorization: Api-Key {API_KEY}") issued from the
+  account API settings, with OAuth, embedded signing, and embedded requesting
+  available on higher tiers. It lets developers send signature requests from
+  templates, bulk-send from CSV data, manage documents (list, download, share, send
+  reminders, revert, activity), manage templates and folders, manage team members,
+  and subscribe to webhooks for document events. There is no separate "contacts"
+  resource; signers are supplied inline on each signature request.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Electronic Signature
+- eSignature
+- Document Signing
+- E-Signature API
+- Contracts
+- Signature Requests
+- SaaS
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: signaturely:signaturely-signature-requests-api
+  name: Signaturely Signature Requests API
+  tags:
+  - Signature Requests
+  - Templates
+  - Bulk Send
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://signaturely.com/api
+    type: Overview
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: Create signature requests by populating a saved template with signers
+    and field values, and bulk-send a single-signer template against CSV data to
+    generate many signature requests at once. Signers (name and email) are supplied
+    inline on the request - there is no standalone contacts resource.
+- aid: signaturely:signaturely-documents-api
+  name: Signaturely Documents API
+  tags:
+  - Documents
+  - Downloads
+  - Reminders
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: List and delete documents, list a document's signers, read its
+    activity log, get signed-document download URLs and shareable signing links,
+    share a document, send signing reminders, revert a document, and fetch the most
+    recent sent document.
+- aid: signaturely:signaturely-templates-api
+  name: Signaturely Templates API
+  tags:
+  - Templates
+  - Reusable Documents
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: List the reusable templates available to your account via API, delete
+    a template, and download a template's file. Templates are the reusable documents
+    that signature requests are generated from. Included template counts vary by API
+    plan (5 on Gold, 25 on Platinum, unlimited on Titanium).
+- aid: signaturely:signaturely-folders-api
+  name: Signaturely Folders API
+  tags:
+  - Folders
+  - Organization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: Create folders for documents via API, list folders (paginated), get a
+    single folder by id, rename a folder, and move documents or folders into a
+    specific folder to organize an account's signing artifacts.
+- aid: signaturely:signaturely-team-api
+  name: Signaturely Team API
+  tags:
+  - Team
+  - Members
+  - Roles
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: List the team members on a Signaturely account with their account
+    types, add a new team member with a role, change a team member's role, and
+    remove a team member by email - directly via the API.
+- aid: signaturely:signaturely-webhooks-api
+  name: Signaturely Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: Subscribe and unsubscribe HTTP webhook endpoints so your application
+    is notified of document lifecycle events. Documented events include
+    document_sent and document_completed, delivered as HTTP POSTs to your
+    configured URL.
+- aid: signaturely:signaturely-user-api
+  name: Signaturely User API
+  tags:
+  - User
+  - Account
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.signaturely.com/
+  baseURL: https://api.signaturely.com/api/v1
+  properties:
+  - url: https://docs.signaturely.com/
+    type: Documentation
+  - url: openapi/signaturely-openapi.yml
+    type: OpenAPI
+  description: Retrieve information about the user account tied to your API key
+    (GET /user/by-api), useful for verifying credentials and reading account
+    identity and role.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/signaturely
+- type: Website
+  url: https://signaturely.com
+- type: Documentation
+  url: https://docs.signaturely.com/
+- type: APIOverview
+  url: https://signaturely.com/api
+- type: HelpCenter
+  url: https://help.signaturely.com/category/53-api
+- type: Plans
+  url: plans/signaturely-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/signaturely-rate-limits.yml
+- type: FinOps
+  url: finops/signaturely-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

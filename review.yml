@@ -1,0 +1,115 @@
+aid: signaturely
+name: Signaturely
+review:
+  question: Does Signaturely expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Signaturely's public API is a
+    request/response REST API over HTTPS (base https://api.signaturely.com/api/v1).
+    There is no server-push transport (WebSocket or SSE) on Signaturely's own API
+    to model. Asynchronous notification of document events is delivered instead by
+    outbound HTTP webhooks (POST callbacks to a subscriber-supplied URL) via the
+    /hooks/subscribe and /hooks/unsubscribe endpoints, carrying events such as
+    document_sent and document_completed. Those are server-to-endpoint HTTP POSTs,
+    not a WebSocket channel.
+findings:
+  summary: |
+    Signaturely does not publish a documented public WebSocket API. Signaturely is
+    simple e-signature software. It exposes a documented REST API at base
+    https://api.signaturely.com/api/v1, authenticated with an API key in the
+    "Authorization: Api-Key {API_KEY}" header (keys managed at
+    https://app.signaturely.com/settings/api), with OAuth and embedded
+    signing/requesting available on higher API plans. The API is pure
+    request/response REST over HTTPS. Asynchronous document events are pushed via
+    outbound HTTP webhooks (document_sent, document_completed), not over a
+    WebSocket. No realtime, bidirectional, or streaming WebSocket (ws:// or wss://)
+    endpoint is documented on Signaturely's API.
+  apiExists: |
+    Yes. Signaturely has a real, documented public REST API. Access is gated behind
+    separately billed API plans (Gold $49/mo, Platinum $99/mo, Titanium $199/mo)
+    that are distinct from Signaturely's regular subscription plans. Developers can
+    create API keys and test the API for free, paying only once they send real
+    signature requests. A Zapier integration is offered as a no-code alternative.
+  authentication: |
+    API key in an HTTP header: "Authorization: Api-Key {API_KEY}". OAuth is
+    additionally available on the Platinum and Titanium API plans, alongside
+    embedded signing and embedded requesting.
+  resources: |
+    Documented resource groups are: signature requests (create-by-template and
+    bulk-send), documents (list, delete, signers, activity, download URL, share,
+    reminders, revert, recent), templates (list, delete, download), folders
+    (create, list, get, rename, move), team members (list, add, change role,
+    remove), webhooks (subscribe, unsubscribe), and user (by-api). Notably there is
+    no standalone "contacts" resource - signers are supplied inline on each
+    signature request or in the bulk-send CSV.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.signaturely.com/api/v1
+      documented: true
+      note: The entire public Signaturely API is request/response REST over HTTPS.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound HTTP POST callbacks to a subscriber URL for events like document_sent and document_completed. Managed via /hooks/subscribe and /hooks/unsubscribe. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Signaturely's API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.signaturely.com/api/v1/user/by-api
+    - POST   https://api.signaturely.com/api/v1/document_sign/api/request_by_template
+    - POST   https://api.signaturely.com/api/v1/document_sign/api/bulk_send
+    - GET    https://api.signaturely.com/api/v1/documents
+    - DELETE https://api.signaturely.com/api/v1/documents
+    - GET    https://api.signaturely.com/api/v1/documents/{documentId}/signers
+    - GET    https://api.signaturely.com/api/v1/documents/{id}/activities
+    - PATCH  https://api.signaturely.com/api/v1/documents/{documentId}/revert
+    - GET    https://api.signaturely.com/api/v1/document_sign/documents/{documentId}/signed_download_url/api
+    - GET    https://api.signaturely.com/api/v1/document_sign/documents/{id}/share_url
+    - POST   https://api.signaturely.com/api/v1/document_sign/documents/{id}/share
+    - POST   https://api.signaturely.com/api/v1/document_sign/documents/{id}/send_reminders
+    - GET    https://api.signaturely.com/api/v1/api-integrations/recent_document?recentDocumentType=sent
+    - GET    https://api.signaturely.com/api/v1/documents/api/templates
+    - DELETE https://api.signaturely.com/api/v1/documents/api/templates
+    - GET    https://api.signaturely.com/api/v1/document_sign/documents/{templateId}/signed_download_url/api
+    - POST   https://api.signaturely.com/api/v1/api-integrations/folders
+    - GET    https://api.signaturely.com/api/v1/api-integrations/folders
+    - GET    https://api.signaturely.com/api/v1/api-integrations/folders/{id}
+    - PATCH  https://api.signaturely.com/api/v1/api-integrations/folders/{id}
+    - PATCH  https://api.signaturely.com/api/v1/api-integrations/folders/move
+    - GET    https://api.signaturely.com/api/v1/teams/members
+    - POST   https://api.signaturely.com/api/v1/add-teammates/with-role
+    - PATCH  https://api.signaturely.com/api/v1/teams/members/role
+    - DELETE https://api.signaturely.com/api/v1/remove-teammates/email
+    - POST   https://api.signaturely.com/api/v1/hooks/subscribe
+    - POST   https://api.signaturely.com/api/v1/hooks/unsubscribe
+  webhookEvents:
+    - document_sent
+    - document_completed
+sources:
+  - url: https://signaturely.com/api
+    type: Overview
+    note: API overview page. API access requires a separate API plan; free testing until you send a real signature request.
+  - url: https://docs.signaturely.com/
+    type: Documentation
+    note: Developer documentation. Confirms base URL, Api-Key auth header, and all endpoint paths and methods (REST only; no WebSocket).
+  - url: https://signaturely.com/pricing-api/
+    type: Pricing
+    note: Gold/Platinum/Titanium API plans with monthly signature-request quotas and template limits.
+  - url: https://help.signaturely.com/category/53-api
+    type: HelpCenter
+    note: API help articles describing what the API is and how to get started.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Signaturely's public API is
+    request/response REST (base https://api.signaturely.com/api/v1), and its only
+    asynchronous surface is outbound HTTP webhooks (document_sent,
+    document_completed) rather than a server-push WebSocket. No AsyncAPI document
+    was created because there is no WebSocket/SSE transport on Signaturely's own API
+    to model.

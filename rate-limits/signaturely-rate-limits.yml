@@ -1,0 +1,67 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Signaturely
+providerId: signaturely
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Electronic Signature
+- eSignature
+- E-Signature API
+- Rate Limiting
+- Quotas
+description: >-
+  Signaturely does not publish a fixed numeric per-second or per-minute request
+  rate limit for its API. In practice, usage is governed by a monthly quota of API
+  signature requests tied to your API plan - 50/month on Gold, 150/month on
+  Platinum, and 500/month on Titanium - plus a plan-based cap on the number of
+  templates (5, 25, and unlimited respectively). Read and management operations
+  (listing documents, templates, folders, team members, subscribing webhooks) are
+  not the metered unit; the billable/limited action is sending a signature request.
+notes: >-
+  No explicit HTTP request-rate ceiling (requests per second/minute) is documented
+  as of the review date. The effective limit is the monthly API signature-request
+  quota per plan. Verify current quotas on the Signaturely API pricing page during
+  reconciliation.
+sources:
+- https://signaturely.com/api
+- https://signaturely.com/pricing-api/
+- https://docs.signaturely.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: API Signature Requests (Gold)
+  scope: account
+  metric: requests
+  limit: 50 per month
+  notes: Gold API plan monthly signature-request quota.
+- name: API Signature Requests (Platinum)
+  scope: account
+  metric: requests
+  limit: 150 per month
+  notes: Platinum API plan monthly signature-request quota.
+- name: API Signature Requests (Titanium)
+  scope: account
+  metric: requests
+  limit: 500 per month
+  notes: Titanium API plan monthly signature-request quota.
+- name: Templates
+  scope: account
+  metric: templates
+  limit: 5 / 25 / unlimited (Gold / Platinum / Titanium)
+  notes: Number of reusable templates allowed per API plan tier.
+- name: HTTP Request Rate
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed per-second or per-minute API request-rate limit is documented.
+policies:
+- name: Monthly Quota Reset
+  description: API signature-request quotas are counted per calendar month and reset each billing cycle; exceeding the quota requires upgrading the API plan.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any 429 response.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
