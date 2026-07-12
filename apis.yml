@@ -150,6 +150,10 @@ apis:
     (GET /user/by-api), useful for verifying credentials and reading account
     identity and role.
 common:
+- type: DomainSecurity
+  url: security/signaturely-domain-security.yml
+- type: Authentication
+  url: authentication/signaturely-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/signaturely
 - type: Website
@@ -166,6 +170,8 @@ common:
   url: rate-limits/signaturely-rate-limits.yml
 - type: FinOps
   url: finops/signaturely-finops.yml
+- url: https://signaturely.com/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
