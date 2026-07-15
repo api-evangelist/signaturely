@@ -150,6 +150,8 @@ apis:
     (GET /user/by-api), useful for verifying credentials and reading account
     identity and role.
 common:
+- type: AgenticAccess
+  url: agentic-access/signaturely-agentic-access.yml
 - type: DomainSecurity
   url: security/signaturely-domain-security.yml
 - type: Authentication
