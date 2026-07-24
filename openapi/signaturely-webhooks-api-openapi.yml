@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents Webhooks API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Webhooks
+  description: Subscribe to document lifecycle events.
+paths:
+  /hooks/subscribe:
+    post:
+      tags:
+      - Webhooks
+      summary: Subscribe a webhook URL
+      description: Register an HTTP endpoint to receive document event notifications. Documented events include document_sent and document_completed.
+      responses:
+        '200':
+          description: Webhook subscribed.
+  /hooks/unsubscribe:
+    post:
+      tags:
+      - Webhooks
+      summary: Unsubscribe a webhook URL
+      responses:
+        '200':
+          description: Webhook unsubscribed.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

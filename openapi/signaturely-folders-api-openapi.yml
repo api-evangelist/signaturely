@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents Folders API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Folders
+  description: Organize documents and folders.
+paths:
+  /api-integrations/folders:
+    get:
+      tags:
+      - Folders
+      summary: List folders
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A paginated list of folders.
+    post:
+      tags:
+      - Folders
+      summary: Create a folder
+      description: Create a folder for documents via API call.
+      responses:
+        '200':
+          description: Folder created.
+  /api-integrations/folders/{id}:
+    get:
+      tags:
+      - Folders
+      summary: Get a folder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Folder information.
+    patch:
+      tags:
+      - Folders
+      summary: Rename a folder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Folder renamed.
+  /api-integrations/folders/move:
+    patch:
+      tags:
+      - Folders
+      summary: Move documents or folders into a folder
+      responses:
+        '200':
+          description: Entities moved.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

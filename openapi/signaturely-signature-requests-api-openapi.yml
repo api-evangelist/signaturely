@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents Signature Requests API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Signature Requests
+  description: Create signature requests from templates and bulk-send from CSV data.
+paths:
+  /document_sign/api/request_by_template:
+    post:
+      tags:
+      - Signature Requests
+      summary: Create a signature request from a template
+      description: Send a signature request by populating a saved template with signers and field values.
+      responses:
+        '200':
+          description: Signature request created.
+  /document_sign/api/bulk_send:
+    post:
+      tags:
+      - Signature Requests
+      summary: Bulk-send signature requests
+      description: Create many signature requests based on a single-signer template and CSV data.
+      responses:
+        '200':
+          description: Bulk send accepted.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

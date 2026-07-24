@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents User API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: User
+  description: Account information for the authenticated API key.
+paths:
+  /user/by-api:
+    get:
+      tags:
+      - User
+      summary: Get user
+      description: Retrieve information about the user account tied to your API key.
+      responses:
+        '200':
+          description: User account information.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Documents
+  description: List, download, share, remind on, and manage documents.
+paths:
+  /documents:
+    get:
+      tags:
+      - Documents
+      summary: List documents
+      responses:
+        '200':
+          description: A list of documents.
+    delete:
+      tags:
+      - Documents
+      summary: Delete a document
+      responses:
+        '200':
+          description: Document deleted.
+  /documents/{documentId}/signers:
+    get:
+      tags:
+      - Documents
+      summary: Get a document's signers
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A list of signers for the document.
+  /documents/{id}/activities:
+    get:
+      tags:
+      - Documents
+      summary: Get a document's activity log
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The document activity log.
+  /documents/{documentId}/revert:
+    patch:
+      tags:
+      - Documents
+      summary: Revert a document
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Document reverted.
+  /document_sign/documents/{documentId}/signed_download_url/api:
+    get:
+      tags:
+      - Documents
+      summary: Get a signed-document download URL
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A download URL for the signed document.
+  /document_sign/documents/{id}/share_url:
+    get:
+      tags:
+      - Documents
+      summary: Get a shareable signing link
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A shareable signing URL.
+  /document_sign/documents/{id}/share:
+    post:
+      tags:
+      - Documents
+      summary: Share a document
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Document shared.
+  /document_sign/documents/{id}/send_reminders:
+    post:
+      tags:
+      - Documents
+      summary: Send signing reminders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Reminders sent.
+  /api-integrations/recent_document:
+    get:
+      tags:
+      - Documents
+      summary: Get the most recent document
+      parameters:
+      - name: recentDocumentType
+        in: query
+        required: false
+        schema:
+          type: string
+          example: sent
+      responses:
+        '200':
+          description: The most recent document of the given type.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'

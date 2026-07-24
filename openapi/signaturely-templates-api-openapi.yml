@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  title: Signaturely Documents Templates API
+  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  version: v1
+  contact:
+    name: Signaturely
+    url: https://signaturely.com/api
+  x-apisjson-aid: signaturely
+servers:
+- url: https://api.signaturely.com/api/v1
+  description: Signaturely production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Templates
+  description: Work with reusable templates.
+paths:
+  /documents/api/templates:
+    get:
+      tags:
+      - Templates
+      summary: List templates
+      description: Get the list of templates available to your account via API.
+      responses:
+        '200':
+          description: A list of templates.
+    delete:
+      tags:
+      - Templates
+      summary: Delete a template
+      responses:
+        '200':
+          description: Template deleted.
+  /document_sign/documents/{templateId}/signed_download_url/api:
+    get:
+      tags:
+      - Templates
+      summary: Download a template file
+      parameters:
+      - name: templateId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: A download URL for the template file.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'API key sent as: Authorization: Api-Key {API_KEY}'
