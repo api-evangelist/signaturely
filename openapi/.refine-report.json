@@ -1,0 +1,26 @@
+{
+  "provider": "signaturely",
+  "sources": [
+    "signaturely-documents-api-openapi.yml",
+    "signaturely-folders-api-openapi.yml",
+    "signaturely-signature-requests-api-openapi.yml",
+    "signaturely-team-api-openapi.yml",
+    "signaturely-templates-api-openapi.yml",
+    "signaturely-user-api-openapi.yml",
+    "signaturely-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "signaturely-documents-api-openapi.yml",
+    "signaturely-folders-api-openapi.yml",
+    "signaturely-signature-requests-api-openapi.yml",
+    "signaturely-team-api-openapi.yml",
+    "signaturely-templates-api-openapi.yml",
+    "signaturely-user-api-openapi.yml",
+    "signaturely-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
