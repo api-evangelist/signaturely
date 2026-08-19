@@ -1,0 +1,119 @@
+{
+  "item": [
+    {
+      "id": "d0a6f627-1fd2-4cc5-b37e-cd7284644f66",
+      "name": "User",
+      "description": {
+        "content": "Account information for the authenticated API key.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a6befce-1eaf-4d5f-8ed2-ba71220b593b",
+          "name": "Get user",
+          "request": {
+            "name": "Get user",
+            "description": {
+              "content": "Retrieve information about the user account tied to your API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "by-api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a6247f2-0b70-4ee6-b835-dbf9fe670616",
+              "name": "User account information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "by-api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.signaturely.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc83a0f1-a691-4449-9154-167652943837",
+    "name": "Signaturely Documents User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the \"Authorization: Api-Key {API_KEY}\" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely's public developer documentation.\n\nContact Support:\n Name: Signaturely",
+      "type": "text/plain"
+    }
+  }
+}

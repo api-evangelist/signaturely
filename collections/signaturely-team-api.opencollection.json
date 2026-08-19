@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signaturely Documents Team API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List team members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/teams/members"
+          },
+          "docs": "Get the team members of your Signaturely account, with their respective account types."
+        },
+        {
+          "info": {
+            "name": "Change a team member's role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.signaturely.com/api/v1/teams/members/role"
+          },
+          "docs": "Change a team member's role"
+        },
+        {
+          "info": {
+            "name": "Add a team member with a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signaturely.com/api/v1/add-teammates/with-role"
+          },
+          "docs": "Add a team member with a role"
+        },
+        {
+          "info": {
+            "name": "Remove a team member by email",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.signaturely.com/api/v1/remove-teammates/email"
+          },
+          "docs": "Remove a team member by email"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

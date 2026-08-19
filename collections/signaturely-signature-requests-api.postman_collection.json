@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "05f7ef4e-cb2a-45e0-bcdd-ad3ff74920a3",
+      "name": "Signature Requests",
+      "description": {
+        "content": "Create signature requests from templates and bulk-send from CSV data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c55ee8d9-6432-4e75-b0ad-13ed3eb9a1ec",
+          "name": "Create a signature request from a template",
+          "request": {
+            "name": "Create a signature request from a template",
+            "description": {
+              "content": "Send a signature request by populating a saved template with signers and field values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document_sign",
+                "api",
+                "request_by_template"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41406629-fb32-4678-9bc5-dfc94be33661",
+              "name": "Signature request created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document_sign",
+                    "api",
+                    "request_by_template"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b79c4203-a11b-496b-8800-b5dd2df98ce9",
+          "name": "Bulk-send signature requests",
+          "request": {
+            "name": "Bulk-send signature requests",
+            "description": {
+              "content": "Create many signature requests based on a single-signer template and CSV data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "document_sign",
+                "api",
+                "bulk_send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "709bdcae-d07d-418f-8ecb-75127a593b33",
+              "name": "Bulk send accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "document_sign",
+                    "api",
+                    "bulk_send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.signaturely.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e39f4a8a-ad3c-4e42-b484-958b288ae127",
+    "name": "Signaturely Documents Signature Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the \"Authorization: Api-Key {API_KEY}\" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely's public developer documentation.\n\nContact Support:\n Name: Signaturely",
+      "type": "text/plain"
+    }
+  }
+}

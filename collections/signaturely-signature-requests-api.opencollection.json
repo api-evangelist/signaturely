@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signaturely Documents Signature Requests API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signature Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a signature request from a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signaturely.com/api/v1/document_sign/api/request_by_template"
+          },
+          "docs": "Send a signature request by populating a saved template with signers and field values."
+        },
+        {
+          "info": {
+            "name": "Bulk-send signature requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signaturely.com/api/v1/document_sign/api/bulk_send"
+          },
+          "docs": "Create many signature requests based on a single-signer template and CSV data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,186 @@
+{
+  "item": [
+    {
+      "id": "898bbbad-24e2-4e49-95e1-7b6791ca978e",
+      "name": "Webhooks",
+      "description": {
+        "content": "Subscribe to document lifecycle events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df0fe895-a98c-4698-a98e-9300f2ca7aba",
+          "name": "Subscribe a webhook URL",
+          "request": {
+            "name": "Subscribe a webhook URL",
+            "description": {
+              "content": "Register an HTTP endpoint to receive document event notifications. Documented events include document_sent and document_completed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hooks",
+                "subscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8396a21-d068-4db5-bef3-ff4cd7edf385",
+              "name": "Webhook subscribed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hooks",
+                    "subscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5b78a5a-317e-4c41-aca0-83c38bbae119",
+          "name": "Unsubscribe a webhook URL",
+          "request": {
+            "name": "Unsubscribe a webhook URL",
+            "description": {},
+            "url": {
+              "path": [
+                "hooks",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c686ac8c-f389-44a8-bf42-f976ab0d96a6",
+              "name": "Webhook unsubscribed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hooks",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.signaturely.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4b21535b-96e3-4449-8390-053331b9eac0",
+    "name": "Signaturely Documents Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the \"Authorization: Api-Key {API_KEY}\" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely's public developer documentation.\n\nContact Support:\n Name: Signaturely",
+      "type": "text/plain"
+    }
+  }
+}

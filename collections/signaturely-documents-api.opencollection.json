@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signaturely Documents API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/documents"
+          },
+          "docs": "List documents"
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.signaturely.com/api/v1/documents"
+          },
+          "docs": "Delete a document"
+        },
+        {
+          "info": {
+            "name": "Get a document's signers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/documents/:documentId/signers",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a document's signers"
+        },
+        {
+          "info": {
+            "name": "Get a document's activity log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/documents/:id/activities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a document's activity log"
+        },
+        {
+          "info": {
+            "name": "Revert a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.signaturely.com/api/v1/documents/:documentId/revert",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revert a document"
+        },
+        {
+          "info": {
+            "name": "Get a signed-document download URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/document_sign/documents/:documentId/signed_download_url/api",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a signed-document download URL"
+        },
+        {
+          "info": {
+            "name": "Get a shareable signing link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/document_sign/documents/:id/share_url",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a shareable signing link"
+        },
+        {
+          "info": {
+            "name": "Share a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signaturely.com/api/v1/document_sign/documents/:id/share",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Share a document"
+        },
+        {
+          "info": {
+            "name": "Send signing reminders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.signaturely.com/api/v1/document_sign/documents/:id/send_reminders",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send signing reminders"
+        },
+        {
+          "info": {
+            "name": "Get the most recent document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.signaturely.com/api/v1/api-integrations/recent_document",
+            "params": [
+              {
+                "name": "recentDocumentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get the most recent document"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
