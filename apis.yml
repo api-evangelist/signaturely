@@ -38,7 +38,7 @@ tags:
 - SaaS
 created: '2026-07-03'
 modified: '2026-07-03'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: signaturely:signaturely-documents-api
   name: Signaturely Documents API
