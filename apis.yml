@@ -14,6 +14,18 @@ description: >-
   reminders, revert, activity), manage templates and folders, manage team members,
   and subscribe to webhooks for document events. There is no separate "contacts"
   resource; signers are supplied inline on each signature request.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
