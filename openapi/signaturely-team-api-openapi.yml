@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Signaturely Documents Team API
-  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  title: Signaturely Team API
+  description: REST API for Signaturely, simple electronic signature software.
   version: v1
   contact:
     name: Signaturely
@@ -25,6 +25,8 @@ paths:
       responses:
         '200':
           description: A list of team members.
+      operationId: getTeamsMembers
+      x-operation-id-source: derived
   /teams/members/role:
     patch:
       tags:
@@ -33,6 +35,8 @@ paths:
       responses:
         '200':
           description: Role changed.
+      operationId: patchTeamsMembersRole
+      x-operation-id-source: derived
   /add-teammates/with-role:
     post:
       tags:
@@ -41,6 +45,8 @@ paths:
       responses:
         '200':
           description: Team member added.
+      operationId: postAddTeammatesWithRole
+      x-operation-id-source: derived
   /remove-teammates/email:
     delete:
       tags:
@@ -49,6 +55,8 @@ paths:
       responses:
         '200':
           description: Team member removed.
+      operationId: deleteRemoveTeammatesEmail
+      x-operation-id-source: derived
 components:
   securitySchemes:
     ApiKeyAuth:

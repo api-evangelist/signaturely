@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Signaturely Documents Folders API
-  description: 'REST API for Signaturely, simple electronic signature software. Send signature requests from templates, bulk-send from CSV data, manage documents, templates, folders, and team members, and subscribe to document webhooks. Access requires a separately billed API plan (Gold, Platinum, or Titanium). Authentication uses an API key sent in the "Authorization: Api-Key {API_KEY}" header, issued from the account API settings. Endpoint paths and methods below were confirmed from Signaturely''s public developer documentation.'
+  title: Signaturely Folders API
+  description: REST API for Signaturely, simple electronic signature software.
   version: v1
   contact:
     name: Signaturely
@@ -30,6 +30,8 @@ paths:
       responses:
         '200':
           description: A paginated list of folders.
+      operationId: getApiIntegrationsFolders
+      x-operation-id-source: derived
     post:
       tags:
       - Folders
@@ -38,6 +40,8 @@ paths:
       responses:
         '200':
           description: Folder created.
+      operationId: postApiIntegrationsFolders
+      x-operation-id-source: derived
   /api-integrations/folders/{id}:
     get:
       tags:
@@ -53,6 +57,8 @@ paths:
       responses:
         '200':
           description: Folder information.
+      operationId: getApiIntegrationsFoldersById
+      x-operation-id-source: derived
     patch:
       tags:
       - Folders
@@ -67,6 +73,8 @@ paths:
       responses:
         '200':
           description: Folder renamed.
+      operationId: patchApiIntegrationsFoldersById
+      x-operation-id-source: derived
   /api-integrations/folders/move:
     patch:
       tags:
@@ -75,6 +83,8 @@ paths:
       responses:
         '200':
           description: Entities moved.
+      operationId: patchApiIntegrationsFoldersMove
+      x-operation-id-source: derived
 components:
   securitySchemes:
     ApiKeyAuth:
