@@ -1,0 +1,35 @@
+slug: signaturely
+provider: Signaturely
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Documents
+  spec_file: signaturely-documents-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: GET /documents/{documentId}/signers  Get a document's signers; POST /document_sign/documents/{id}/send_reminders  Send
+    signing reminders
+  reason: Operations manage the execution of legally binding documents for signature (signers, signing
+    links, reminders, signed-document download), which realises the execution stage of contract lifecycle
+    management.
+- tag: Signature Requests
+  spec_file: signaturely-signature-requests-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: POST /document_sign/api/request_by_template  Create a signature request from a template
+  reason: Creating and bulk-sending signature requests on legally binding documents is contract execution
+    within the contract lifecycle.

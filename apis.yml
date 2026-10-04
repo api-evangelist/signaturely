@@ -162,6 +162,9 @@ apis:
   - type: Documentation
     url: https://docs.signaturely.com/
 common:
+- type: CapabilityMap
+  url: capabilities/signaturely-capability-edges.yml
+  name: Signaturely Business Capability Map
 - type: AgenticAccess
   url: agentic-access/signaturely-agentic-access.yml
 - type: DomainSecurity
