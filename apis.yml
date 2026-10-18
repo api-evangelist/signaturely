@@ -42,9 +42,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/signaturely.png
 tags:
-- Electronic Signature
 - E-Signature
-- Document Signing
 - E-Signature API
 - Contracts
 - Signature Requests
