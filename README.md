@@ -1,4 +1,4 @@
-# Signaturely (signaturely)
+# Signaturely
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,111 +64,128 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Signaturely is simple electronic signature software for sending, signing, and managing legally binding documents online. In addition to its web application, Signaturely offers a documented public REST API for developers who want to embed and automate signing.
+Signaturely is simple electronic signature software for sending, signing, and managing legally binding documents online. Beyond the web app, Signaturely offers a documented public REST API (base https://api.signaturely.com/api/v1) gated behind separately billed API plans (Gold, Platinum, Titanium). The API is authenticated with an API key ("Authorization: Api-Key {API_KEY}") issued from the account API settings, with OAuth, embedded signing, and embedded requesting available on higher tiers. It lets developers send signature requests from templates, bulk-send from CSV data, manage documents (list, download, share, send reminders, revert, activity), manage templates and folders, manage team members, and subscribe to webhooks for document events. There is no separate "contacts" resource; signers are supplied inline on each signature request.
 
-**Does Signaturely have a public API? Yes.** Signaturely exposes a documented REST API at base URL `https://api.signaturely.com/api/v1`. Access is gated behind separately billed **API plans** (Gold, Platinum, Titanium) that are not part of Signaturely's regular subscription plans. You can create API keys and test the API for free; you do not pay until you actually send a signature request.
+**Areas:** E-Signature · E-Signature API · Contracts · Signature Requests · Software-as-a-Service
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/signaturely/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/signaturely/refs/heads/main/apis.yml)
+## Signaturely on APIs.io
 
-## Access Model
+Everything profiled for Signaturely is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/signaturely/](https://apis.io/providers/signaturely/)** — or go straight to one of the APIs or properties below.
 
-- **Base URL:** `https://api.signaturely.com/api/v1`
-- **Authentication:** API key sent in the `Authorization: Api-Key {API_KEY}` header. Keys are created and managed in the account API settings at `https://app.signaturely.com/settings/api`.
-- **OAuth / Embedded:** OAuth, embedded signing, and embedded requesting are available on the Platinum and Titanium API plans.
-- **Plans:** API access is a separate paid product. Gold ($49/mo), Platinum ($99/mo), and Titanium ($199/mo) differ by monthly API signature-request quota and included templates. See `plans/signaturely-plans-pricing.yml`.
-- **No-code alternative:** A Zapier integration lets non-developers automate Signaturely without using the API directly.
-- **No "contacts" resource:** Signaturely's API has no standalone contacts endpoint. Signers (name + email) are supplied inline on each signature request or in the bulk-send CSV.
+### APIs (7)
 
-## Tags
+- [Signaturely Documents API](https://apis.io/apis/signaturely/signaturely-documents-api/) — List, download, share, remind on, and manage documents.
+- [Signaturely Folders API](https://apis.io/apis/signaturely/signaturely-folders-api/) — Organize documents and folders.
+- [Signaturely Signature Requests API](https://apis.io/apis/signaturely/signaturely-signature-requests-api/) — Create signature requests from templates and bulk-send from CSV data.
+- [Signaturely Team API](https://apis.io/apis/signaturely/signaturely-team-api/) — Manage team members and roles.
+- [Signaturely Templates API](https://apis.io/apis/signaturely/signaturely-templates-api/) — Work with reusable templates.
+- [Signaturely User API](https://apis.io/apis/signaturely/signaturely-user-api/) — Account information for the authenticated API key.
+- [Signaturely Webhooks API](https://apis.io/apis/signaturely/signaturely-webhooks-api/) — Subscribe to document lifecycle events.
 
-- Electronic Signature
-- eSignature
-- Document Signing
-- E-Signature API
-- Contracts
-- Signature Requests
-- SaaS
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+#### Agentic access (1)
 
-## APIs
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Signaturely Signature Requests API
+- [Signaturely Agentic Access](https://apis.io/agentic-access/signaturely/signaturely-agentic-access/)
 
-Create signature requests by populating a saved template with signers and field values, and bulk-send a single-signer template against CSV data to generate many signature requests at once.
+#### Collections (7)
 
-- **Base URL:** `https://api.signaturely.com/api/v1`
-- `POST /document_sign/api/request_by_template` — create a signature request from a template
-- `POST /document_sign/api/bulk_send` — bulk-send a single-signer template using CSV data
+Postman and Open Collection request collections.
 
-### Signaturely Documents API
+- [Signaturely Documents API](https://apis.io/collections/signaturely/open-signaturely-documents-api/)
+- [Signaturely Documents Folders API](https://apis.io/collections/signaturely/open-signaturely-folders-api/)
+- [Signaturely Documents Signature Requests API](https://apis.io/collections/signaturely/open-signaturely-signature-requests-api/)
+- [Signaturely Documents Team API](https://apis.io/collections/signaturely/open-signaturely-team-api/)
+- [Signaturely Documents Templates API](https://apis.io/collections/signaturely/open-signaturely-templates-api/)
+- [Signaturely Documents User API](https://apis.io/collections/signaturely/open-signaturely-user-api/)
+- [Signaturely Documents Webhooks API](https://apis.io/collections/signaturely/open-signaturely-webhooks-api/)
 
-List, download, share, remind on, and manage documents.
+#### Security (2)
 
-- `GET /documents` — list documents
-- `DELETE /documents` — delete a document
-- `GET /documents/{documentId}/signers` — list a document's signers
-- `GET /documents/{id}/activities` — document activity log
-- `PATCH /documents/{documentId}/revert` — revert a document
-- `GET /document_sign/documents/{documentId}/signed_download_url/api` — signed-document download URL
-- `GET /document_sign/documents/{id}/share_url` — get a shareable signing link
-- `POST /document_sign/documents/{id}/share` — share a document
-- `POST /document_sign/documents/{id}/send_reminders` — send signing reminders
-- `GET /api-integrations/recent_document?recentDocumentType=sent` — most recent sent document
+Authentication, trust centre, and vulnerability disclosure.
 
-### Signaturely Templates API
+- [Signaturely Authentication](https://apis.io/security/signaturely/signaturely-authentication/)
+- [Signaturely Domain Security](https://apis.io/security/signaturely/signaturely-domain-security/)
 
-Work with the reusable templates that signature requests are generated from.
+#### Plans and pricing (1)
 
-- `GET /documents/api/templates` — list templates
-- `DELETE /documents/api/templates` — delete a template
-- `GET /document_sign/documents/{templateId}/signed_download_url/api` — download a template file
+Published plans, tiers and prices.
 
-### Signaturely Folders API
+- [Signaturely Plans Pricing](https://apis.io/plans/signaturely/signaturely-plans-pricing/)
 
-Organize documents and folders.
+#### Rate limits (1)
 
-- `POST /api-integrations/folders` — create a folder
-- `GET /api-integrations/folders` — list folders (paginated)
-- `GET /api-integrations/folders/{id}` — get a folder
-- `PATCH /api-integrations/folders/{id}` — rename a folder
-- `PATCH /api-integrations/folders/move` — move documents/folders into a folder
+Published request limits.
 
-### Signaturely Team API
+- [Signaturely Rate Limits](https://apis.io/rate-limits/signaturely/signaturely-rate-limits/)
 
-Manage team members directly via the API.
+#### FinOps (1)
 
-- `GET /teams/members` — list team members
-- `POST /add-teammates/with-role` — add a team member with a role
-- `PATCH /teams/members/role` — change a team member's role
-- `DELETE /remove-teammates/email` — remove a team member by email
+What the API costs to run, by operation.
 
-### Signaturely Webhooks API
+- [Signaturely Finops](https://apis.io/finops/signaturely/signaturely-finops/)
 
-Subscribe to document lifecycle events.
+## Where to find this API
 
-- `POST /hooks/subscribe` — subscribe a webhook URL (events: `document_sent`, `document_completed`)
-- `POST /hooks/unsubscribe` — unsubscribe a webhook URL
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Signaturely User API
-
-- `GET /user/by-api` — get the user account tied to your API key
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/signaturely)
 - [Website](https://signaturely.com)
 - [Documentation](https://docs.signaturely.com/)
-- [API Overview](https://signaturely.com/api)
-- [Help Center - API](https://help.signaturely.com/category/53-api)
-- [Plans](plans/signaturely-plans-pricing.yml)
-- [Rate Limits](rate-limits/signaturely-rate-limits.yml)
-- [Fin Ops](finops/signaturely-finops.yml)
+- [Blog](https://signaturely.com/feed/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 23.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/signaturely/](https://apis.io/providers/signaturely/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Signaturely: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/signaturely/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
